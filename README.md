@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CoachTech お問い合わせフォーム
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 概要
 
-## About Laravel
+CoachTech確認テスト用のお問い合わせフォームアプリケーションです。
+Laravel 10を用いたWebアプリケーション開発環境を構築し、Docker（Laravel Sail）上で動作する開発環境を作成しました。
+今後、この環境を基盤としてお問い合わせフォーム機能を実装します。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 使用技術
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- OS：macOS
+- PHP 8.2
+- Laravel 10.x
+- MySQL 8.0
+- Docker
+- Laravel Sail
+- Nginx
+- phpMyAdmin
+- Composer
+- Node.js
+- npm
+- Vite
+- Tailwind CSS 3.4.0
+- Git
+- GitHub
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 環境構築
 
-## Learning Laravel
+以下の手順で開発環境を構築しました。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Laravel 10プロジェクトを作成
+2. Laravel Sailを導入
+3. Dockerコンテナを作成・起動
+4. npm依存パッケージをインストール
+5. Tailwind CSS・Viteを設定
+6. 提供されたresourcesディレクトリへ差し替え
+7. phpMyAdminをDockerへ追加
+8. Sailを再起動しエイリアスを設定
+9. アプリケーションキーを生成
+10. データベース接続を確認
+11. Laravel・phpMyAdminの動作確認
+12. マイグレーションを実行
+13. Gitでバージョン管理を開始
+14. GitHubリポジトリを作成
+15. GitHub Issueを作成し、Issue駆動で開発を開始
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Git運用
 
-## Laravel Sponsors
+本プロジェクトではGitHubを利用し、Issue駆動で開発を行います。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- GitHubリポジトリ作成
+- Issue作成
+- 機能ごとにブランチを作成
+- コミット
+- Push
+- Pull Request
+- mainブランチへマージ
 
-### Premium Partners
+## 実装機能
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 環境構築
 
-## Contributing
+- Laravel 10開発環境構築
+- Docker（Laravel Sail）環境構築
+- MySQL接続
+- phpMyAdmin導入
+- Tailwind CSS設定
+- Vite設定
+- Git管理
+- GitHub連携
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 開発環境
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Laravel http://localhost
+phpMyAdmin http://localhost:8080
