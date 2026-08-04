@@ -138,6 +138,17 @@ erDiagram
     TAGS ||--o{ CONTACT_TAG : "1対多"
 ```
 
+### モデル・リレーション
+
+- Categoryモデルを作成
+- Contactモデルを作成
+- Tagモデルを作成
+- Category：Contact（1対多）リレーションを設定
+- Contact：Category（多対1）リレーションを設定
+- Contact：Tag（多対多）リレーションを設定
+- Tag：Contact（多対多）リレーションを設定
+- 各モデルにfillableプロパティを設定
+
 ## 開発環境
 
 Laravel http://localhost
