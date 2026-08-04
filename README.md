@@ -58,6 +58,60 @@ Laravel 10を用いたWebアプリケーション開発環境を構築し、Dock
 
 ## 実装機能
 
+### シーディング
+
+- UserSeeder
+    - usersテーブルに初期管理者を1件登録
+    - 名前：Test User
+    - メールアドレス：test@example.com
+    - パスワード：password（Hash::make()でハッシュ化）
+    - フロント画面からログイン可能
+
+- CategorySeeder
+    - categoriesテーブルにお問い合わせカテゴリを5件登録
+        - 商品のお届けについて
+        - 商品の交換について
+        - 商品トラブル
+        - ショップへのお問い合わせ
+        - その他
+
+- TagSeeder
+    - tagsテーブルにタグを5件登録
+        - 質問
+        - 要望
+        - 不具合報告
+        - ご意見
+        - その他
+
+- ContactFactory
+    - Faker（ja_JP）を使用してフォーム入力に近いダミーデータを生成
+    - 氏名、性別、メールアドレス、電話番号、住所、建物名、お問い合わせ内容を生成
+
+- ContactSeeder
+    - contactsテーブルに20件のダミーデータを登録
+    - category_idはcategoriesテーブルからランダムに設定
+    - 各Contactに対してtagsテーブルからランダムに1〜3件のタグを紐付け（attach）
+
+- DatabaseSeeder
+    - UserSeeder
+    - CategorySeeder
+    - TagSeeder
+    - ContactSeeder
+      を順番に実行し、一括で初期データを投入できるように実装
+
+#### 動作確認
+
+```bash
+sail artisan migrate:fresh --seed
+```
+
+- 全Seederが正常に実行されることを確認
+- usersテーブルに管理ユーザーが1件登録されることを確認
+- categoriesテーブルに5件登録されることを確認
+- tagsテーブルに5件登録されることを確認
+- contactsテーブルに20件登録されることを確認
+- contact_tagテーブルに1〜3件ずつタグが紐付いていることを確認
+
 ### 環境構築
 
 - Laravel 10開発環境構築
