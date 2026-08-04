@@ -1,5 +1,5 @@
 <!-- お名前 -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             お名前
@@ -23,7 +23,7 @@
 </div>
 
 <!-- 性別 -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             性別
@@ -55,7 +55,7 @@
 </div>
 
 <!-- メールアドレス -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             メールアドレス
@@ -78,7 +78,7 @@
     $tel2 = old('tel2', $telParts[1] ?? '');
     $tel3 = old('tel3', $telParts[2] ?? '');
 @endphp
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             電話番号
@@ -107,7 +107,7 @@
 </div>
 
 <!-- 住所 -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             住所
@@ -124,7 +124,7 @@
 </div>
 
 <!-- 建物名 -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             建物名
@@ -140,7 +140,7 @@
 </div>
 
 <!-- お問い合わせの種類 -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             お問い合わせの種類
@@ -172,7 +172,7 @@
 
 <!-- タグ -->
 @isset($tags)
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-center">
         <label class="text-sm text-[#6b5744]">
             タグ
@@ -194,7 +194,7 @@
 @endisset
 
 <!-- お問い合わせ内容 -->
-<div class="grid grid-cols-3 gap-8 mb-4">
+<div class="grid grid-cols-3 gap-8 mb-8">
     <div class="col-span-1 flex items-start pt-3">
         <label class="text-sm text-[#6b5744]">
             お問い合わせ内容

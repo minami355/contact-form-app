@@ -1,6 +1,7 @@
 <x-guest-layout>
     <div class="bg-white min-h-screen">
-        <div class="max-w-3xl mx-auto px-8 py-12">
+        <div class="max-w-5xl mx-auto px-8 py-12">
+
             <h1 class="text-2xl font-serif text-[#6b5744] text-center mb-10">Contact</h1>
 
             <!-- 入力フォーム -->
