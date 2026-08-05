@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\ContactRequest;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
@@ -29,5 +31,31 @@ class ContactController extends Controller
             'category',
             'tags'
         ));
+    }
+
+    public function store(Request $request)
+    {
+        $contact = Contact::create([
+            'category_id' => $request->category_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'gender' => $request->gender,
+            'email' => $request->email,
+            'tel' => $request->tel,
+            'address' => $request->address,
+            'building' => $request->building,
+            'detail' => $request->detail,
+        ]);
+
+        if ($request->filled('tag_ids')) {
+            $contact->tags()->attach($request->tag_ids);
+        }
+
+        return redirect()->route('contacts.thanks');
+    }
+
+    public function thanks()
+    {
+        return view('contact.thanks');
     }
 }
