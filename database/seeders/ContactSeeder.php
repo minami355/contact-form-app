@@ -14,18 +14,21 @@ class ContactSeeder extends Seeder
      */
     public function run(): void
     {
-        Contact::factory()
-            ->count(20)
-            ->create([
-                'category_id' => Category::inRandomOrder()->first()->id,
-            ])
-            ->each(function ($contact) {
+        foreach (Category::all() as $category) {
 
-                $tags = Tag::inRandomOrder()
-                    ->limit(rand(1, 3))
-                    ->pluck('id');
+            Contact::factory()
+                ->count(4)
+                ->create([
+                    'category_id' => $category->id,
+                ])
+                ->each(function ($contact) {
 
-                $contact->tags()->attach($tags);
-            });
+                    $tags = Tag::inRandomOrder()
+                        ->limit(rand(1, 3))
+                        ->pluck('id');
+
+                    $contact->tags()->attach($tags);
+                });
+        }
     }
 }

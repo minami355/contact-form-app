@@ -17,7 +17,7 @@ class ContactFactory extends Factory
         $faker = \Faker\Factory::create('ja_JP');
 
         return [
-            'category_id' => null,
+            'category_id' => \App\Models\Category::inRandomOrder()->value('id'),
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName(),
             'gender' => $faker->randomElement([1, 2, 3]),
