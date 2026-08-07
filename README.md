@@ -147,6 +147,16 @@ sail artisan migrate:fresh --seed
     - タグ編集
     - タグ削除
 
+    ### API
+
+- お問い合わせ一覧取得API（GET）
+- お問い合わせ詳細取得API（GET）
+- お問い合わせ登録API（POST）
+- お問い合わせ更新API（PUT）
+- お問い合わせ削除API（DELETE）
+- API Resourceによるレスポンス整形
+- FormRequestによるバリデーション
+
 ### 環境構築
 
 - Laravel 10開発環境構築

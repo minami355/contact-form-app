@@ -33,7 +33,7 @@ class ContactController extends Controller
         ));
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         $contact = Contact::create([
             'category_id' => $request->category_id,
