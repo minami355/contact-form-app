@@ -248,7 +248,35 @@ erDiagram
 - Tag：Contact（多対多）リレーションを設定
 - 各モデルにfillableプロパティを設定
 
+## 概要
+
+お問い合わせ機能およびAPI機能のテストコードを追加しました。
+
+## 変更内容
+
+- ContactControllerのFeatureテストを追加
+- Contact APIのFeatureテストを追加
+- 入力画面・確認画面・送信処理のテストを追加
+- バリデーションエラーのテストを追加
+- APIのCRUDテストを追加
+- API検索（キーワード・性別・カテゴリ・日付）のテストを追加
+- タグの登録・更新処理のテストを追加
+
+## 動作確認
+
+- `sail artisan test`
+- `sail artisan test --coverage`
+
+## 結果
+
+- 全テストPASS
+- カバレッジ：約73%
+
+Closes #20
+
 ## 開発環境
 
 Laravel http://localhost
 phpMyAdmin http://localhost:8080
+
+製作者　南　雄大
