@@ -34,8 +34,19 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin/contacts/{contact}', [AdminController::class, 'show'])
     ->name('admin.show');
 
+
 Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])
     ->name('admin.destroy');
+
+// CSVエクスポート
+Route::get('/contacts/export', [AdminController::class, 'export'])
+    ->name('contacts.export');
+
+
+
+Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])
+    ->name('admin.destroy');
+
 
 Route::post('/admin/tags', [AdminController::class, 'storeTag'])
     ->name('admin.tags.store');
