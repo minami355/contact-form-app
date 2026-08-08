@@ -14,26 +14,50 @@ class CreateNewUser implements CreatesNewUsers
     use PasswordValidationRules;
 
     /**
-     * Validate and create a newly registered user.
+     * 入力された管理者情報をバリデーションし、
+     * 問題がなければ新しいユーザーを作成する
      *
-     * @param  array<string, string>  $input
+     * @param array<string, string> $input
      *
      * @throws ValidationException
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
-            'password' => $this->passwordRules(),
-        ])->validate();
+        // 管理者登録フォームの入力内容をバリデーション
+        Validator::make(
+            $input,
+            [
+                // お名前
+                'name' => ['required', 'string', 'max:255'],
 
+                // メールアドレス
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    Rule::unique(User::class),
+                ],
+
+                // パスワード
+                'password' => $this->passwordRules(),
+            ],
+            [
+                // お名前
+                'name.required' => 'お名前を入力してください',
+
+                // メールアドレス
+                'email.required' => 'メールアドレスを入力してください',
+                'email.email' => 'メールアドレスはメール形式で入力してください',
+
+                // パスワード
+                'password.required' => 'パスワードを入力してください',
+                'password.min' => 'パスワードは8文字以上で入力してください',
+                'password.confirmed' => 'パスワードと一致しません',
+            ]
+        )->validate();
+
+        // バリデーションを通過した入力内容でユーザーを作成
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
