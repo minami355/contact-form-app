@@ -18,6 +18,10 @@ class ContactController extends Controller
         return view('contact.index', compact('categories', 'tags'));
     }
 
+
+
+
+
     public function confirm(ContactRequest $request)
     {
         $validated = $request->validated();
@@ -35,6 +39,15 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
+
+
+        // 「修正」ボタンが押された場合
+        if ($request->input('action') === 'back') {
+            return redirect('/')
+                ->withInput();
+        }
+
+
         $contact = Contact::create([
             'category_id' => $request->category_id,
             'first_name' => $request->first_name,
@@ -58,4 +71,7 @@ class ContactController extends Controller
     {
         return view('contact.thanks');
     }
+
+
+
 }
