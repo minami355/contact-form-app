@@ -7,11 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class ContactRequest extends FormRequest
 {
     /**
-
-     * Determine if the user is authorized to make this request.
-
      * リクエストを許可する
-
      */
     public function authorize(): bool
     {
@@ -19,57 +15,11 @@ class ContactRequest extends FormRequest
     }
 
     /**
-
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-
      * お問い合わせフォームのバリデーションルール
-
      */
     public function rules(): array
     {
         return [
-
-
-            'first_name' => ['required', 'string', 'max:255'],
-
-            'last_name' => ['required', 'string', 'max:255'],
-
-            'gender' => ['required', 'integer', 'in:1,2,3'],
-
-            'email' => ['required', 'string', 'email', 'max:255'],
-
-            'tel' => ['required', 'regex:/^[0-9]{10,11}$/'],
-
-            'address' => ['required', 'string', 'max:255'],
-
-            'building' => ['nullable', 'string', 'max:255'],
-
-            'category_id' => ['required', 'integer', 'exists:categories,id'],
-
-            'detail' => ['required', 'string', 'max:120'],
-
-            'tag_ids' => ['nullable', 'array'],
-
-            'tag_ids.*' => ['integer', 'exists:tags,id'],
-
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'first_name.required' => '姓を入力してください。',
-            'last_name.required' => '名を入力してください。',
-            'gender.required' => '性別を選択してください。',
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.email' => 'メールアドレスの形式で入力してください。',
-            'tel.required' => '電話番号を入力してください。',
-            'tel.regex' => '電話番号は10〜11桁の数字で入力してください。',
-            'address.required' => '住所を入力してください。',
-            'category_id.required' => 'お問い合わせの種類を選択してください。',
-
             // お名前
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -88,14 +38,12 @@ class ContactRequest extends FormRequest
             'building' => ['nullable', 'string', 'max:255'],
 
             // お問い合わせの種類
-            // categoriesテーブルに存在するIDのみ許可
             'category_id' => ['required', 'integer', 'exists:categories,id'],
 
             // お問い合わせ内容（120文字以内）
             'detail' => ['required', 'string', 'max:120'],
 
             // タグ（複数選択可能）
-            // 選択されたタグがtagsテーブルに存在するか確認
             'tag_ids' => ['nullable', 'array'],
             'tag_ids.*' => ['integer', 'exists:tags,id'],
         ];
@@ -129,7 +77,6 @@ class ContactRequest extends FormRequest
             'category_id.required' => 'お問い合わせの種類を選択してください。',
 
             // お問い合わせ内容
-
             'detail.required' => 'お問い合わせ内容を入力してください。',
             'detail.max' => 'お問い合わせ内容は120文字以内で入力してください。',
         ];
