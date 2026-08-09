@@ -128,10 +128,8 @@ class ContactApiTest extends TestCase
 
         $response = $this->deleteJson("/api/v1/contacts/{$contact->id}");
 
-        $response->assertStatus(200);
-        $response->assertJson([
-            'message' => 'お問い合わせを削除しました。',
-        ]);
+        $response->assertStatus(204);
+        $response->assertNoContent();
     }
 
     /**
@@ -348,5 +346,47 @@ class ContactApiTest extends TestCase
         $this->assertDatabaseHas('contacts', [
             'email' => 'new@example.com',
         ]);
+    }
+
+    /**
+     * 存在しないお問い合わせ詳細は404を返す
+     */
+    public function test_contact_detail_returns_404_when_not_found(): void
+    {
+        $response = $this->getJson('/api/v1/contacts/999999');
+
+        $response->assertStatus(404);
+    }
+
+    /**
+     * 存在しないお問い合わせの更新は404を返す
+     */
+    public function test_contact_update_returns_404_when_not_found(): void
+    {
+        $category = Category::factory()->create();
+
+        $response = $this->putJson('/api/v1/contacts/999999', [
+            'first_name' => '太郎',
+            'last_name' => '山田',
+            'gender' => 1,
+            'email' => 'test@example.com',
+            'tel' => '09012345678',
+            'address' => '東京都',
+            'building' => '',
+            'category_id' => $category->id,
+            'detail' => 'テストお問い合わせ',
+        ]);
+
+        $response->assertStatus(404);
+    }
+
+    /**
+     * 存在しないお問い合わせの削除は404を返す
+     */
+    public function test_contact_delete_returns_404_when_not_found(): void
+    {
+        $response = $this->deleteJson('/api/v1/contacts/999999');
+
+        $response->assertStatus(404);
     }
 }

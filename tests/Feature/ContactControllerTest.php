@@ -136,4 +136,32 @@ class ContactControllerTest extends TestCase
             'detail',
         ]);
     }
+
+    /**
+     * 不正な電話番号ではお問い合わせを送信できない
+     */
+    public function test_contact_store_rejects_invalid_tel(): void
+    {
+        $category = Category::factory()->create();
+
+        $response = $this->from('/')
+            ->post('/contacts', [
+                'first_name' => '太郎',
+                'last_name' => '山田',
+                'gender' => 1,
+                'email' => 'taro@example.com',
+                'tel' => '123',
+                'address' => '東京都',
+                'building' => '',
+                'category_id' => $category->id,
+                'detail' => 'テストお問い合わせ',
+                'tag_ids' => [],
+            ]);
+
+        $response->assertRedirect('/');
+
+        $response->assertSessionHasErrors([
+            'tel',
+        ]);
+    }
 }

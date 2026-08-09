@@ -115,8 +115,7 @@ class ContactController extends Controller
         // 指定されたお問い合わせを削除
         $contact->delete();
 
-        // 要件に合わせて204 No Contentを返す
-        // 204ではレスポンス本文を返さない
+        // 204 No Contentを返す
         return response()->noContent();
     }
 }
