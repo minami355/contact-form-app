@@ -12,7 +12,7 @@ CoachTech確認テスト用のお問い合わせフォームアプリケーシ�
 
 - PHP 8.x
 - Laravel 10.x
-- MySQL 8.4
+- MySQL 8.0
 - Docker
 - Laravel Sail
 - phpMyAdmin
@@ -79,7 +79,7 @@ MySQLの初回起動には時間がかかる場合があります。
 ./vendor/bin/sail ps
 ```
 
-`mysql` が `healthy` になってから、以降のコマンドを実行してください。
+MySQLコンテナが起動していることを確認してから、以降のコマンドを実行してください。
 
 ### 5. アプリケーションキーを生成
 
