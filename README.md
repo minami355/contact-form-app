@@ -26,27 +26,22 @@ CoachTech確認テスト用のお問い合わせフォームアプリケーシ�
 
 ---
 
-# 環境構築
+## 環境構築
 
-## 1. リポジトリをクローン
+### 1. リポジトリをクローン
 
 ```bash
 git clone https://github.com/minami355/contact-form-app.git
-```
-
-```bash
 cd contact-form-app
 ```
 
----
-
-## 2. 環境変数ファイルを作成
+### 2. 環境変数ファイルを作成
 
 ```bash
 cp .env.example .env
 ```
 
-`.env` のデータベース設定が以下になっていることを確認してください。
+データベース設定は以下を使用します。
 
 ```env
 DB_CONNECTION=mysql
@@ -57,66 +52,65 @@ DB_USERNAME=sail
 DB_PASSWORD=password
 ```
 
----
+### 3. Composerパッケージをインストール
 
-## 3. Composerパッケージをインストール
-
-ローカル環境にComposerがインストールされていない場合でも実行できるよう、Dockerを使用してComposerパッケージをインストールします。
+Dockerを使用してComposerパッケージをインストールします。
 
 ```bash
 docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php82-composer:latest \
-    composer install --ignore-platform-reqs
+  -u "$(id -u):$(id -g)" \
+  -v "$(pwd):/var/www/html" \
+  -w /var/www/html \
+  laravelsail/php82-composer:latest \
+  composer install --ignore-platform-reqs
 ```
 
----
-
-## 4. Dockerコンテナを起動
+### 4. Dockerコンテナを起動
 
 ```bash
 ./vendor/bin/sail up -d
 ```
 
-MySQLコンテナの起動直後はデータベースへの接続準備が完了していない場合があります。
+MySQLの初回起動には時間がかかる場合があります。
 
-必要に応じて少し待ってから、以降のコマンドを実行してください。
+起動状態は以下のコマンドで確認できます。
 
----
+```bash
+./vendor/bin/sail ps
+```
 
-## 5. アプリケーションキーを生成
+`mysql` が `healthy` になってから、以降のコマンドを実行してください。
+
+### 5. アプリケーションキーを生成
 
 ```bash
 ./vendor/bin/sail artisan key:generate
 ```
 
----
-
-## 6. npmパッケージをインストール
+### 6. npmパッケージをインストール
 
 ```bash
 ./vendor/bin/sail npm install
 ```
 
----
-
-## 7. マイグレーション・シーディングを実行
+### 7. マイグレーション・シーディングを実行
 
 ```bash
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
----
-
-## 8. Viteを起動
+### 8. Viteを起動
 
 ```bash
 ./vendor/bin/sail npm run dev
 ```
 
-Viteを起動しているターミナルはそのまま開いておいてください。
+Viteを起動しているターミナルはそのまま開いてください。
+
+ブラウザから以下へアクセスします。
+
+- Laravel：`http://localhost`
+- phpMyAdmin：`http://localhost:8080`
 
 ---
 
@@ -290,7 +284,6 @@ erDiagram
 - CategorySeeder
 - TagSeeder
 - ContactSeeder
-- ContactTagSeeder
 
 実行コマンド：
 
