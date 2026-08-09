@@ -33,7 +33,6 @@ class CreateNewUser implements CreatesNewUsers
                 // メールアドレス
                 'email' => [
                     'required',
-                    'string',
                     'email',
                     'max:255',
                     Rule::unique(User::class),

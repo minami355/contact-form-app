@@ -17,11 +17,6 @@ class ContactController extends Controller
 
         return view('contact.index', compact('categories', 'tags'));
     }
-
-
-
-
-
     public function confirm(ContactRequest $request)
     {
         $validated = $request->validated();
@@ -71,7 +66,4 @@ class ContactController extends Controller
     {
         return view('contact.thanks');
     }
-
-
-
 }

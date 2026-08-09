@@ -184,6 +184,47 @@ class AdminController extends Controller
      */
     public function export(Request $request)
     {
+        // CSVエクスポート時の検索条件をバリデーション
+        $request->validate(
+            [
+                'keyword' => [
+                    'nullable',
+                    'string',
+                    'max:255',
+                ],
+                'gender' => [
+                    'nullable',
+                    'integer',
+                    'in:0,1,2,3',
+                ],
+                'category_id' => [
+                    'nullable',
+                    'integer',
+                    'exists:categories,id',
+                ],
+                'date' => [
+                    'nullable',
+                    'date',
+                ],
+            ],
+            [
+                // キーワード
+                'keyword.string' => 'キーワードは文字列で入力してください',
+                'keyword.max' => 'キーワードは255文字以内で入力してください',
+
+                // 性別
+                'gender.integer' => '性別は整数で入力してください',
+                'gender.in' => '性別の値が不正です',
+
+                // カテゴリ
+                'category_id.integer' => 'カテゴリーIDは整数で入力してください',
+                'category_id.exists' => '選択されたカテゴリーが存在しません',
+
+                // 日付
+                'date.date' => '日付の形式が正しくありません',
+            ]
+        );
+
         // お問い合わせデータとカテゴリ情報を取得
         $query = Contact::with('category');
 
@@ -224,7 +265,7 @@ class AdminController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // 要件に合わせてCSVのヘッダーを定義
+        // CSVのヘッダーを定義
         $csvHeader = [
             'ID',
             '氏名',

@@ -31,7 +31,7 @@ class ContactRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255'],
 
             // 電話番号（ハイフンなしの10〜11桁）
-            'tel' => ['required', 'regex:/^[0-9]{10,11}$/'],
+            'tel' => ['required', 'string', 'regex:/^[0-9]{10,11}$/'],
 
             // 住所・建物名
             'address' => ['required', 'string', 'max:255'],

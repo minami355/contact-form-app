@@ -6,9 +6,12 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
@@ -51,6 +54,51 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::redirectUserForTwoFactorAuthenticationUsing(
             RedirectIfTwoFactorAuthenticatable::class
         );
+
+        /*
+        |--------------------------------------------------------------------------
+        | ログイン時のバリデーション・認証
+        |--------------------------------------------------------------------------
+        |
+        | 要件
+        | email    : 必須 / email
+        | password : 必須
+        |
+        */
+        Fortify::authenticateUsing(function (Request $request) {
+            // ログインフォームの入力内容をバリデーション
+            Validator::make(
+                $request->all(),
+                [
+                    'email' => [
+                        'required',
+                        'email',
+                    ],
+                    'password' => [
+                        'required',
+                    ],
+                ],
+                [
+                    'email.required' => 'メールアドレスを入力してください',
+                    'email.email' => 'メールアドレスはメール形式で入力してください',
+                    'password.required' => 'パスワードを入力してください',
+                ]
+            )->validate();
+
+            // 入力されたメールアドレスからユーザーを検索
+            $user = User::where('email', $request->email)->first();
+
+            // ユーザーが存在し、パスワードが一致すればログイン成功
+            if (
+                $user &&
+                Hash::check($request->password, $user->password)
+            ) {
+                return $user;
+            }
+
+            // 認証に失敗した場合
+            return null;
+        });
 
         // ログイン画面を表示
         Fortify::loginView(function () {
