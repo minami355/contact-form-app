@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateContactRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * このリクエストを許可するか
      */
     public function authorize(): bool
     {
@@ -15,9 +15,7 @@ class UpdateContactRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * バリデーションルール
      */
     public function rules(): array
     {
@@ -33,6 +31,26 @@ class UpdateContactRequest extends FormRequest
             'detail' => ['required', 'string', 'max:120'],
             'tag_ids' => ['nullable', 'array'],
             'tag_ids.*' => ['integer', 'exists:tags,id'],
+        ];
+    }
+
+    /**
+     * バリデーションエラーに表示する項目名
+     */
+    public function attributes(): array
+    {
+        return [
+            'first_name' => '名',
+            'last_name' => '姓',
+            'gender' => '性別',
+            'email' => 'メールアドレス',
+            'tel' => '電話番号',
+            'address' => '住所',
+            'building' => '建物名',
+            'category_id' => 'お問い合わせの種類',
+            'detail' => 'お問い合わせ内容',
+            'tag_ids' => 'タグ',
+            'tag_ids.*' => 'タグ',
         ];
     }
 }
